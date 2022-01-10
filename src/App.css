@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+
+  background-color: rgba(226, 228, 231, 0.2);
+  font-family: 'Varela Round', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  margin: 2em;
+  padding: 2em;
+
+  width: 40vw;
+  min-height: 80vh;
+
+  text-align: center;
+  overflow-wrap: break-word;
+
+  background-color: #FFF;
+  box-shadow: #32325d40 0px 2px 5px -1px, #0000004d 0px 1px 3px -1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  color: #653BC9;
+  margin: .5em auto 2em;
+  text-shadow: 5px 5px 0 #f6f6f6;
+  line-height: 1.5em;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }

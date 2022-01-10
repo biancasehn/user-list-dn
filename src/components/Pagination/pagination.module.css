@@ -1,0 +1,30 @@
+.ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin: auto 10%;
+    padding: 3em 1em 1em;
+}
+
+.button, .ul a {
+    color: #653BC9;
+}
+
+.active {
+    font-weight: bold;
+    padding: .3em .5em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
+
+}
+
+.button {
+    cursor: pointer;
+    padding: .3em .6em;
+
+    background-color: #FFF;
+    border: 1px solid #663bc9ad;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
+    font-family: 'Varela Round', sans-serif;
+}
