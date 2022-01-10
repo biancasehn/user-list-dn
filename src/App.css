@@ -15,6 +15,7 @@ body {
   padding: 2em;
 
   width: 40vw;
+  max-width: 1000px;
   min-height: 80vh;
 
   text-align: center;
@@ -22,6 +23,12 @@ body {
 
   background-color: #FFF;
   box-shadow: #32325d40 0px 2px 5px -1px, #0000004d 0px 1px 3px -1px;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 60vw;
+  }
 }
 
 h1 {

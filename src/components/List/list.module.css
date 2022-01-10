@@ -1,0 +1,29 @@
+.wrap {
+    border: 1px solid #997cdd42;
+
+}
+
+.grid,
+.title {
+    display: grid;
+    grid-template-columns: 1fr 30% 25%;
+    align-items: center;
+    justify-items: space-between;
+    padding: .8em 1em;
+}
+
+.title {
+    padding: 1em;
+    font-weight: bold;
+    background-color: #7f58da42;
+}
+
+.status {
+    padding: .2em;
+    border: 1px solid #663bc9ad;
+    cursor: pointer;
+}
+
+.blocked {
+    text-decoration: line-through;
+}

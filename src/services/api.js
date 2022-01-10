@@ -6,6 +6,21 @@ export const getUsers = async () => {
     headers: { "Content-Type": "application/json" },
   });
   const result = await fetchResult.json();
+  return result.sort((a, b) => {
+    return a.id - b.id;
+  });
+};
 
-  return result;
+export const patchUser = async (id, status) => {
+  console.log(status);
+  if (id) {
+    return await fetch(`${API_URL}/users/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        status: status === "locked" ? "active" : "locked",
+      }),
+    });
+  }
+  return;
 };
