@@ -10,7 +10,7 @@ body {
   font-family: 'Varela Round', sans-serif;
 }
 
-.container {
+.container {  
   margin: 2em;
   padding: 2em;
 
@@ -32,8 +32,8 @@ body {
 }
 
 h1 {
+  margin: .5em 0 0 0;
   color: #653BC9;
-  margin: .5em auto 2em;
   text-shadow: 5px 5px 0 #f6f6f6;
   line-height: 1.5em;
 }

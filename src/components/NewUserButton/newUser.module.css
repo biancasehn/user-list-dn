@@ -1,0 +1,18 @@
+.icon {
+    padding: 0 .2em;
+    margin: 0 0 -.5em auto;
+    width: 50px;
+
+    color: #FFF;
+    background-color: #00C0FF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.icon:hover {
+    transform: scale(1.05);
+}
