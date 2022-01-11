@@ -2,8 +2,10 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useStore } from "../../services/store";
 
-function Modal({ modalOpen, handleCloseModal, handleStatusChange }) {
+function Modal({ handleCloseModal, handleStatusChange }) {
+  const { modalOpen } = useStore();
   return (
     <div>
       <Dialog

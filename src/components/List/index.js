@@ -1,6 +1,7 @@
 import styles from "./list.module.css";
 
 function List({ currentUsers, handleOpenModal }) {
+  console.log(currentUsers);
   return (
     <ul className={styles.wrap}>
       <div className={styles.title}>

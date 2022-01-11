@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
-import { getUsers, patchUser } from "../../services/api";
-import { Loading, Pagination, List, Modal } from "../../components";
+import {
+  Loading,
+  Pagination,
+  List,
+  Modal,
+  NewUserButton,
+} from "../../components";
+import { loadUsers, statusChange } from "../../controller";
+import { useStore } from "../../services/store";
 
 function Home() {
-  const [loading, setLoading] = useState(false);
-  const [usersList, setUsersList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [idStatusChange, setIdStatusChange] = useState("");
-  const [statusToChange, setIdStatusToChange] = useState("");
+  const {
+    loading,
+    setLoading,
+    setModalOpen,
+    idStatusChange,
+    setIdStatusChange,
+    statusToChange,
+    setStatusToChange,
+    usersList,
+    setUsersList,
+  } = useStore();
 
   //Get current users
   const lastUserIndex = currentPage * usersPerPage;
   const firstUserIndex = lastUserIndex - usersPerPage;
   const currentUsers = usersList.slice(firstUserIndex, lastUserIndex);
 
-  const loadUsers = async () => {
-    setLoading(true);
-    try {
-      const result = await getUsers();
-      setUsersList(result);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const handleOpenModal = (id, status) => {
     setIdStatusChange(id);
-    setIdStatusToChange(status);
+    setStatusToChange(status);
     setModalOpen(true);
   };
 
@@ -41,22 +45,26 @@ function Home() {
   const handleStatusChange = async () => {
     setModalOpen(false);
     setLoading(true);
-    try {
-      await patchUser(idStatusChange, statusToChange);
-      setLoading(false);
-      loadUsers();
-    } catch (error) {
-      console.log(error);
-    }
+    await statusChange(idStatusChange, statusToChange);
+    load()
+    setLoading(false);
   };
 
-  useEffect(() => {
-    loadUsers();
+  const load = async () => {
+    setLoading(true);
+    const result = await loadUsers();
+    setUsersList(result);
+    setLoading(false);
+  }
+
+  useEffect(async () => {
+    load()
   }, []);
 
   return (
     <div className="container">
       <h1>USERS LIST</h1>
+      <NewUserButton />
       {!!loading ? (
         <Loading />
       ) : (
@@ -69,7 +77,6 @@ function Home() {
             paginate={paginate}
           />
           <Modal
-            modalOpen={modalOpen}
             handleCloseModal={handleCloseModal}
             handleStatusChange={handleStatusChange}
           />
