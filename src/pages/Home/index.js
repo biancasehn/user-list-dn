@@ -15,10 +15,12 @@ function Home() {
 
   const {
     loading,
+    setFirstName,
+    setLastName,
     setLoading,
     setModalOpen,
-    idStatusChange,
-    setIdStatusChange,
+    idOfChange,
+    setidOfChange,
     statusToChange,
     setStatusToChange,
     usersList,
@@ -33,7 +35,7 @@ function Home() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleOpenModal = (id, status) => {
-    setIdStatusChange(id);
+    setidOfChange(id);
     setStatusToChange(status);
     setModalOpen(true);
   };
@@ -42,10 +44,16 @@ function Home() {
     setModalOpen(false);
   };
 
+  const handleEditUser = (id, first, last) => {
+    setidOfChange(id)
+    setFirstName(first)
+    setLastName(last)
+  }
+
   const handleStatusChange = async () => {
     setModalOpen(false);
     setLoading(true);
-    await statusChange(idStatusChange, statusToChange);
+    await statusChange(idOfChange, statusToChange);
     load()
     setLoading(false);
   };
@@ -69,7 +77,7 @@ function Home() {
         <Loading />
       ) : (
         <div>
-          <List currentUsers={currentUsers} handleOpenModal={handleOpenModal} />
+          <List currentUsers={currentUsers} handleOpenModal={handleOpenModal} handleEditUser={handleEditUser} />
           <Pagination
             usersPerPage={usersPerPage}
             totalUsers={usersList.length}

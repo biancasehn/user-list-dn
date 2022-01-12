@@ -1,6 +1,6 @@
 import { API_URL } from "../constants/api";
 
-export const getUsers = async () => {
+export const get = async () => {
   const fetchResult = await fetch(`${API_URL}/users`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -11,7 +11,7 @@ export const getUsers = async () => {
   });
 };
 
-export const statusUpdate = async (id, status) => {
+export const updateStatus = async (id, status) => {
   console.log("status update", status);
   if (id) {
     return await fetch(`${API_URL}/users/${id}`, {
@@ -25,28 +25,27 @@ export const statusUpdate = async (id, status) => {
   return;
 };
 
-export const createUser = async (firstName, lastName) => {
-  if (firstName && lastName) {
-    return await fetch(`${API_URL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: "?",
-        last_name: lastName,
-        first_name: firstName,
-	      status: "active",
-	      created_at: new Date(),
-	      updated_at: new Date(),
-	      url: "?"
-      }),
-    });
-  }
-  return;
+export const create = async (firstName, lastName) => {
+  const data = await fetch(`${API_URL}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: "?",
+      last_name: lastName,
+      first_name: firstName,
+      status: "active",
+      created_at: new Date(),
+      updated_at: new Date(),
+      url: "?",
+    }),
+  });
+  if (data.status == 422) return await data.json();
+  return "";
 };
 
-export const editUser = async (id, firstName, lastName) => {
+export const updateUser = async (id, firstName, lastName) => {
   if (id) {
-    return await fetch(`${API_URL}/users/${id}`, {
+    const data = await fetch(`${API_URL}/users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -54,7 +53,8 @@ export const editUser = async (id, firstName, lastName) => {
         first_name: firstName,
       }),
     });
+    if (data.status == 422) return await data.json();
+    return "";
   }
   return;
 };
-

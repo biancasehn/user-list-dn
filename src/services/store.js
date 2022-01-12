@@ -13,14 +13,17 @@ export const useStore = createHook((set) => ({
     statusToChange: '',
     setStatusToChange: (statusToChange) => set({ statusToChange }),
 
-    idStatusChange: '',
-    setIdStatusChange: (idStatusChange) => set({ idStatusChange }),
+    idOfChange: '',
+    setidOfChange: (idOfChange) => set({ idOfChange }),
 
     usersList: [],
     setUsersList : (usersList) => set({ usersList }),
 
     modalOpen: false,
     setModalOpen: (modalOpen) => set({ modalOpen }),
+
+    errorMessage: '',
+    setErrorMessage: (errorMessage) => set({ errorMessage }),
 }));
 
 

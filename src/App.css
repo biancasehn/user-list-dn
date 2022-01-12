@@ -33,9 +33,12 @@ body {
 
 h1 {
   margin: .5em 0 0 0;
-  color: #653BC9;
   text-shadow: 5px 5px 0 #f6f6f6;
   line-height: 1.5em;
+}
+
+h1, h2 {
+  color: #653BC9;
 }
 
 ul {

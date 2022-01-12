@@ -5,7 +5,7 @@
 .grid,
 .title {
     display: grid;
-    grid-template-columns: 1fr 30% 25%;
+    grid-template-columns: 1fr 30% 15% 10%;
     align-items: center;
     justify-items: space-between;
     padding: .8em 1em;
@@ -25,4 +25,17 @@
 
 .blocked {
     text-decoration: line-through;
+}
+
+.icon {
+    margin-left: auto;
+    width: 1.5em;
+    color: #00C0FF;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.icon:hover {
+    transform: scale(1.05);
 }

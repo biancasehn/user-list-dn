@@ -1,30 +1,36 @@
-import { getUsers, statusUpdate, createUser } from "../model";
+import { get, updateStatus, create, updateUser } from "../model";
 
 const loadUsers = async () => {
   try {
-    const result = await getUsers();
-    return result
+    const result = await get();
+    return result;
   } catch (error) {
     console.log(error);
   }
 };
 
-const statusChange = async (idStatusChange, statusToChange) => {
+const statusChange = async (idOfChange, statusToChange) => {
   try {
-    await statusUpdate(idStatusChange, statusToChange);
+    await updateStatus(idOfChange, statusToChange);
   } catch (error) {
     console.log(error);
   }
 };
 
 const userCreation = async (firstName, lastName) => {
-//   event.preventDefault();
-  console.log("oi")
   try {
-    await createUser(firstName, lastName);
+    return await create(firstName, lastName);
   } catch (error) {
     console.log(error);
   }
 };
 
-export { loadUsers, statusChange, userCreation };
+const editUser = async (idOfChange, firstName, lastName) => {
+  try {
+    return await updateUser(idOfChange, firstName, lastName);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { loadUsers, statusChange, userCreation, editUser };

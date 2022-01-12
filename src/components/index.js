@@ -4,6 +4,6 @@ import Pagination from "./Pagination";
 import Modal from "./Modal";
 import NewUserButton from "./NewUserButton";
 import Form from "./Form";
+import Back from "./Back";
 
-
-export { Loading, List, Pagination, Modal, NewUserButton, Form };
+export { Loading, List, Pagination, Modal, NewUserButton, Form, Back };
