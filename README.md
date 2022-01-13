@@ -6,10 +6,14 @@
 * npm run start
 
 ## Structure
+* Assets
 * Components
 * Constants
+* Controller
+* Model
 * Pages
 * Services
+* Routes
 
 ## Pages
 * Home
