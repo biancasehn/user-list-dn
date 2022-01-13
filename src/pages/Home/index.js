@@ -27,6 +27,10 @@ function Home() {
     setUsersList,
   } = useStore();
 
+  const description = `Do you want to update the status to ${
+    statusToChange === "locked" ? "active" : "locked"
+  }?`;
+
   //Get current users
   const lastUserIndex = currentPage * usersPerPage;
   const firstUserIndex = lastUserIndex - usersPerPage;
@@ -34,27 +38,17 @@ function Home() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleOpenModal = (id, status) => {
-    setidOfChange(id);
-    setStatusToChange(status);
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
   const handleEditUser = (id, first, last) => {
-    setidOfChange(id)
-    setFirstName(first)
-    setLastName(last)
-  }
+    setidOfChange(id);
+    setFirstName(first);
+    setLastName(last);
+  };
 
   const handleStatusChange = async () => {
     setModalOpen(false);
     setLoading(true);
     await statusChange(idOfChange, statusToChange);
-    load()
+    load();
     setLoading(false);
   };
 
@@ -63,10 +57,10 @@ function Home() {
     const result = await loadUsers();
     setUsersList(result);
     setLoading(false);
-  }
+  };
 
   useEffect(async () => {
-    load()
+    load();
   }, []);
 
   return (
@@ -77,7 +71,7 @@ function Home() {
         <Loading />
       ) : (
         <div>
-          <List currentUsers={currentUsers} handleOpenModal={handleOpenModal} handleEditUser={handleEditUser} />
+          <List currentUsers={currentUsers} handleEditUser={handleEditUser} />
           <Pagination
             usersPerPage={usersPerPage}
             totalUsers={usersList.length}
@@ -85,8 +79,8 @@ function Home() {
             paginate={paginate}
           />
           <Modal
-            handleCloseModal={handleCloseModal}
             handleStatusChange={handleStatusChange}
+            description={description}
           />
         </div>
       )}

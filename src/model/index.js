@@ -12,7 +12,6 @@ export const get = async () => {
 };
 
 export const updateStatus = async (id, status) => {
-  console.log("status update", status);
   if (id) {
     return await fetch(`${API_URL}/users/${id}`, {
       method: "PUT",
@@ -40,7 +39,7 @@ export const create = async (firstName, lastName) => {
     }),
   });
   if (data.status == 422) return await data.json();
-  return "";
+  return data.status;
 };
 
 export const updateUser = async (id, firstName, lastName) => {
@@ -54,7 +53,7 @@ export const updateUser = async (id, firstName, lastName) => {
       }),
     });
     if (data.status == 422) return await data.json();
-    return "";
+    return data.status;
   }
   return;
 };

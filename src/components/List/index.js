@@ -1,8 +1,11 @@
 import { ReactComponent as Edit } from "../../assets/edit.svg";
 import { Link } from "react-router-dom";
 import styles from "./list.module.css";
+import { useStore } from "../../services/store";
 
-function List({ currentUsers, handleOpenModal, handleEditUser }) {
+function List({ currentUsers, handleEditUser }) {
+  const { setModalOpen, setidOfChange, setStatusToChange } = useStore();
+
   return (
     <ul className={styles.wrap}>
       <div className={styles.title}>
@@ -21,13 +24,22 @@ function List({ currentUsers, handleOpenModal, handleEditUser }) {
           </span>
 
           <a
-            onClick={() => handleOpenModal(user.id, user.status)}
+            onClick={() => {
+              setModalOpen(true);
+              setidOfChange(user.id);
+              setStatusToChange(user.status);
+            }}
             className={styles.status}
           >
             {user.status}
           </a>
           <Link to={"/edit"}>
-            <div onClick={() => handleEditUser(user.id, user.first_name, user.last_name)} className={styles.icon}>
+            <div
+              onClick={() =>
+                handleEditUser(user.id, user.first_name, user.last_name)
+              }
+              className={styles.icon}
+            >
               <Edit />
             </div>
           </Link>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Loading, Form, Back } from "../../components";
+import { Loading, Form, Back, Modal } from "../../components";
 import { useStore } from "../../services/store";
 import { userCreation } from "../../controller";
 
@@ -7,6 +7,7 @@ function NewUser() {
   const {
     loading,
     setLoading,
+    setModalOpen,
     firstName,
     setFirstName,
     lastName,
@@ -14,11 +15,14 @@ function NewUser() {
     setErrorMessage,
   } = useStore();
 
+  const description = `New user successfully created!`;
+
   const handleUserCreation = async (event) => {
     event.preventDefault();
     setLoading(true);
     const response = await userCreation(firstName, lastName);
     setErrorMessage(response);
+    response == 201 && setModalOpen(true);
     setLoading(false);
   };
 
@@ -37,6 +41,7 @@ function NewUser() {
       ) : (
         <Form handleUserCreation={handleUserCreation} />
       )}
+      <Modal description={description} />
     </div>
   );
 }

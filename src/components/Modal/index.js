@@ -4,24 +4,28 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useStore } from "../../services/store";
 
-function Modal({ handleCloseModal, handleStatusChange }) {
-  const { modalOpen, statusToChange } = useStore();
+function Modal({ handleStatusChange, description }) {
+  const { modalOpen, setModalOpen } = useStore();
   return (
     <div>
       <Dialog
         open={modalOpen}
-        onClose={handleCloseModal}
+        onClose={() => setModalOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {`Do you want to update the status to ${statusToChange === "locked" ? "active" : "locked"}?`}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{description}</DialogTitle>
         <DialogActions>
-          <Button onClick={handleCloseModal}>No</Button>
-          <Button onClick={handleStatusChange} autoFocus>
-            Yes
-          </Button>
+          {handleStatusChange ? (
+            <div>
+              <Button onClick={() => setModalOpen(false)}>No</Button>
+              <Button onClick={handleStatusChange} autoFocus>
+                Yes
+              </Button>
+            </div>
+          ) : (
+            <Button onClick={() => setModalOpen(false)}>Close</Button>
+          )}
         </DialogActions>
       </Dialog>
     </div>

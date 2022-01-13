@@ -4,7 +4,6 @@ import styles from "./form.module.css";
 function Form({ handleUserCreation, handleEditUser }) {
   const { firstName, setFirstName, lastName, setLastName, errorMessage } =
     useStore();
-
   return (
     <form
       className={styles.form}
